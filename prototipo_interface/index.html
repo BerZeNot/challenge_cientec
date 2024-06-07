@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>System</title>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="register selected">Register</div>
+            <div class="search">Search</div>
+        </nav>
+        <main>
+            <form id="register" action="">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+                <button type="button">Save</button>
+            </form>
+            <form id="search" action="" hidden>
+                <label for="nis">NIS</label>
+                <input type="text" name="nis" id="nis">
+                <button type="button">Search</button>
+            </form>
+        </main>
+        <footer>
+            <div class="messages"></div>
+        </footer>
+        <script src="./js/index.js"></script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+div.container {
+    display: flex;
+    flex-direction: column;
+    background-color: rebeccapurple;
+}
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+nav div {
+    width: 10em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+nav div:hover {
+
+    background-color: rgb(125, 58, 187);
+}
+
+nav .selected {
+    background-color: red
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    height: 10em;
+}

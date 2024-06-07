@@ -1,0 +1,1 @@
+<?php // conexão específica para sqlite ?>

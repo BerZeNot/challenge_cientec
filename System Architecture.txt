@@ -1,0 +1,27 @@
+{
+	model{
+		Cidadao.php (id, nome, NIS);
+	},
+
+	view{
+		search.php,
+		register.php
+	},
+
+
+	controller{
+		searchController.php,
+		registerController.php
+	},
+
+	db{
+		connection{
+			connectionSQLite.php
+		},
+
+		dbConnector.php,
+		database.sqlite
+	},
+
+	index.php
+}
