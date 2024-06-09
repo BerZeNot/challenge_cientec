@@ -27,6 +27,9 @@ function isNameValid($name){
     if(!preg_match($expression, $name))
         return false;
 
+    if(strlen($name) > 50)
+        return false;
+    
     return true;
 }
 
