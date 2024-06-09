@@ -1,5 +1,5 @@
 <?php
-require("../model/cidadao.php");
+// require("../model/cidadao.php");
 require("../service/cidadaoService.php");
 
 if(!empty($_POST)){
@@ -11,8 +11,7 @@ if(!empty($_POST)){
     } else {
         header("location: /?msg=invalid-name");
     }
-
-
+    
 } else {
     echo("Houston, we have a problem!");
 }

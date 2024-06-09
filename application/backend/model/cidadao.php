@@ -27,7 +27,7 @@ class Cidadao {
         return json_encode(
             array(
                 "id" => $this->id,
-                "nome" => $this->nome,
+                "name" => $this->nome,
                 "nis" => $this->nis,
             )
         );

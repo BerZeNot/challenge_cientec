@@ -8,14 +8,12 @@ if(isset($_GET['nis']) && isValid($_GET['nis'])){
     
     if($cidadao){
         echo $cidadao->toJson();
-    } else {
-        header('HTTP/1.1 404 Not Found', true, 404);
-        
+    } else {       
         // passo para evitar xss por parâmetro na URL
         $nis = htmlspecialchars($_GET['nis']);
         echo <<<RES
             {
-                "error": "nis not found",
+                "error": "NIS not found",
                 "nis": $nis
             }
             RES;

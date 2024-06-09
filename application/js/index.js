@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", ()=>{
     document.querySelector(".register").addEventListener("click", toggleSelection);
     document.querySelector(".search").addEventListener("click", toggleSelection);
+    document.querySelector("#btSearch").addEventListener("click", searchByNis);
 });
 
 const toggleSelection = (e)=>{
-    console.log(e.target.innerText);
-
+    clearMessageBox();
     const register = document.querySelector(".register");
     const search = document.querySelector(".search");
     const formSearch = document.querySelector("form#search")
@@ -24,4 +24,43 @@ const toggleSelection = (e)=>{
         formRegister.hidden = true;
     }
 
+}
+
+
+const searchByNis = () => {
+    let nis = document.getElementById("nis").value;
+    clearMessageBox();
+    if(nis.length != 11) {
+        document.querySelector(".messages")
+                .innerText = "O NIS deve conter 11 dígitos";
+        return;
+    }
+
+    fetch(`http://localhost:8080/backend/controller/searchController.php?nis=${nis}`)
+    .then(data => {
+        return data.json();
+    })
+    .then(cidadao => {
+        showSearchResult(cidadao);
+    })
+}
+
+const showSearchResult = (cidadao) => {
+    const searchResult = document.getElementById("searchResult");
+    
+    if(!cidadao.error){
+        searchResult.innerHTML = `
+            <p><span>Id: </span>${cidadao.id}</p>
+            <p><span>Name: </span>${cidadao.name}</p>
+            <p><span>NIS: </span>${cidadao.nis}</p>
+        `;
+
+    } else {
+        searchResult.innerHTML = `<p class="error">${cidadao.error}</p>`;
+    }
+}
+
+clearMessageBox = () => {
+    document.querySelector(".messages").innerText = "";
+    document.querySelector("#searchResult").innerText = "";
 }
