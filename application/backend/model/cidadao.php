@@ -6,8 +6,7 @@ class Cidadao {
     private $nis;
  
     public function __construct($nome) {
-        $this->nome = $nome;
-        // chamada para o serviço que vai gerar o NIS       
+        $this->nome = $nome; 
     }
 
     public function getId(){

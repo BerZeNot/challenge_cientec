@@ -1,20 +1,25 @@
 <?php
-// require("../model/cidadao.php");
+require("../db/connection/connectionSQLite.php");
+
+function generateNIS($db){
+    $nis = $db->querySingle("select nis from NextNIS");
+    $nextNis = $nis + 1;
+    $db->query("UPDATE NextNIS set nis = ". $nextNis . " where rowid = 1");
+    return $nis;
+}
 
 class cidadaoService {
 
-    private $pdo = null;
-
-    public static function generateNIS(){
-
-    }
-
     public static function save(Cidadao $cidadao){
-        // cria a query
+        $db = connectDB();
+        $nis = generateNIS($db);
 
-        // executa
+        $stmt = $db->prepare("INSERT INTO Cidadao(nome, nis) VALUES(:nome, :nis)");
+        $stmt->bindValue(":nome", $cidadao->getNome());
+        $stmt->bindValue(":nis", $nis);
 
-        // retorna a entidade criada com o id;
+        $stmt->execute();
+        return $nis;
     }
 }
 

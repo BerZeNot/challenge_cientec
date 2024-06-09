@@ -3,19 +3,13 @@ require("../model/cidadao.php");
 require("../service/cidadaoService.php");
 
 if(!empty($_POST)){
-    // Valida o nome
     $name = $_POST['name'];
     if(isset($_POST['name']) && isNameValid($name)){
-        // Cria a classe
-        $cidadao = new Cidadao($name);
-        // manda para salvar
-
-        cidadaoService::save($cidadao);
-        
-        // retorna para o front-end
-        header("location: /?msg=success");
+        $cidadao = new Cidadao($name);  
+        $newNisRegistered = cidadaoService::save($cidadao);
+        header("location: /?nis=$newNisRegistered");
     } else {
-        header("location: /?msg=error");
+        header("location: /?msg=invalid-name");
     }
 
 
@@ -25,7 +19,12 @@ if(!empty($_POST)){
 
 
 function isNameValid($name){
+
     if(empty($name))
+        return false;
+
+    $expression = "/[A-Z][a-z]* [A-Z][a-z]*/";
+    if(!preg_match($expression, $name))
         return false;
 
     return true;
