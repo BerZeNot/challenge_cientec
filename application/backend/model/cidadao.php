@@ -5,8 +5,10 @@ class Cidadao {
     private $nome;
     private $nis;
  
-    public function __construct($nome) {
+    public function __construct($id=null, $nome, $nis=null) {
+        $this->id = $id; 
         $this->nome = $nome; 
+        $this->nis = $nis; 
     }
 
     public function getId(){
@@ -19,6 +21,16 @@ class Cidadao {
 
     public function getNIS(){
         return $this->nis;
+    }
+
+    public function toJson(){
+        return json_encode(
+            array(
+                "id" => $this->id,
+                "nome" => $this->nome,
+                "nis" => $this->nis,
+            )
+        );
     }
 }
 

@@ -1,5 +1,6 @@
 <?php
 require("../db/connection/connectionSQLite.php");
+require("../model/cidadao.php");
 
 function generateNIS($db){
     $nis = $db->querySingle("select nis from NextNIS");
@@ -20,6 +21,20 @@ class cidadaoService {
 
         $stmt->execute();
         return $nis;
+    }
+
+    public static function findCidadaoByNis($nis) {
+        $db = connectDB();
+        $stmt = $db->prepare("SELECT * FROM Cidadao WHERE nis = :nis");
+        $stmt->bindValue(":nis", $nis);
+        $result = $stmt->execute();
+        
+        if($data = $result->fetchArray()){
+            return new Cidadao($data['id'], $data['nome'], $data['nis']);
+        } else {
+            return false;
+        }
+
     }
 }
 

@@ -5,7 +5,7 @@ require("../service/cidadaoService.php");
 if(!empty($_POST)){
     $name = $_POST['name'];
     if(isset($_POST['name']) && isNameValid($name)){
-        $cidadao = new Cidadao($name);  
+        $cidadao = new Cidadao(null, $name, null);  
         $newNisRegistered = cidadaoService::save($cidadao);
         header("location: /?nis=$newNisRegistered");
     } else {
