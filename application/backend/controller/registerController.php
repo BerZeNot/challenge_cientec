@@ -22,7 +22,7 @@ function isNameValid($name){
     if(empty($name))
         return false;
 
-    $expression = "/[A-Z][a-z]* [A-Z][a-z]*/";
+    $expression = '/^[a-zA-ZÀ-ÖØ-öø-ÿ\s\'-]+$/u';
     if(!preg_match($expression, $name))
         return false;
 
