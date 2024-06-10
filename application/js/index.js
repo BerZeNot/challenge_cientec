@@ -41,7 +41,8 @@ const toggleSelection = (e)=>{
 }
 
 
-const searchByNis = () => {
+const searchByNis = (event) => {
+    event.preventDefault();
     let nis = document.getElementById("nis").value;
     clearMessageBox();
     if(nis.length != 11) {
