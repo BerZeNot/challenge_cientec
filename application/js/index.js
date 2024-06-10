@@ -2,7 +2,21 @@ document.addEventListener("DOMContentLoaded", ()=>{
     document.querySelector(".register").addEventListener("click", toggleSelection);
     document.querySelector(".search").addEventListener("click", toggleSelection);
     document.querySelector("#btSearch").addEventListener("click", searchByNis);
+    handleSearchParams();
 });
+
+const handleSearchParams = () => {
+    const params = new URLSearchParams(window.location.search);
+    let nis;
+    if(params.size == 1 && (nis = params.get('nis'))){
+        document.getElementById('searchResult')
+                .innerText = `NIS gerado: ${nis}`;
+    } else if(params.size == 1 && (msg = params.get('msg'))){
+        if(msg == "invalid-name")
+            document.getElementById('searchResult')
+                .innerText = `Invalid name!`;
+    }
+};
 
 const toggleSelection = (e)=>{
     clearMessageBox();
@@ -63,4 +77,5 @@ const showSearchResult = (cidadao) => {
 clearMessageBox = () => {
     document.querySelector(".messages").innerText = "";
     document.querySelector("#searchResult").innerText = "";
+    document.querySelector("#nis").value = "";
 }
